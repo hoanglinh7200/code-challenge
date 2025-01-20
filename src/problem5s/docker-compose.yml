@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    container_name: nodejs_app
+    ports:
+      - "${PORT}:${PORT}" # Sử dụng biến từ file .env
+    volumes:
+      - .:/usr/src/app # Gắn kết toàn bộ mã nguồn
+      - /usr/src/app/node_modules # Loại trừ node_modules để tránh xung đột
+    command: sh -c "npm run start"
+    depends_on:
+      - mongo # Đảm bảo MongoDB được khởi chạy trước
+    environment:
+      - MONGO_URL=mongodb://mongo:${MONGO_PORT}/${MONGO_INITDB_DATABASE} # URL kết nối MongoDB không có username/password
+      - PORT=${PORT} # Truyền PORT cho ứng dụng Node.js
+
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "${MONGO_PORT}:27017" # Sử dụng biến từ file .env
+    volumes:
+      - mongodb_data:/data/db # Lưu trữ dữ liệu MongoDB
+    restart: always # Tự động khởi động lại nếu container gặp sự cố
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE} # Tạo database mặc định
+
+volumes:
+  mongodb_data:

@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "lib": ["es2019.object"],
+        "allowJs": true,
+        "checkJs": true,
+        "paths": {
+            "*": [
+                "node_modules/*",
+                "src/types/*"
+            ],
+            "@config/*": ["./src/config/*","./src/config/"],
+            "types/*": ["./src/types/*"],
+            "@controllers/*": ["./src/controllers/*"],
+            "@models/*": ["./src/models/*"],
+            "@exceptions/*": ["./src/exceptions/*"],
+            "@midlewares/*": ["./src/midlewares/*"],
+            "@services/*": ["./src/services/*"],
+            "@util/*": ["./src/util/*"]
+        },
+        "typeRoots": ["node_modules/@types"],
+        "skipLibCheck": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

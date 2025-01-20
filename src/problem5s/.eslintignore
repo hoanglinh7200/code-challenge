@@ -6,7 +6,3 @@ coverage/*
 **/*.d.ts
 # custom definition files
 /src/types/
-.idea/
-.idea/*
-src/problem5/dist/
-src/problem5/dist/*
